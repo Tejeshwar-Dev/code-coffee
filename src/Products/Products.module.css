@@ -1,0 +1,16 @@
+/* .products-container {
+    height: calc(100% - 4.75rem);
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 360px  repeat(auto-fill, minmax(calc(100% - 360px), 1fr));
+    gap: 2.25rem;
+} */
+
+.products-container {
+    height: 100%;
+    width: 100%;
+    padding: 2.25rem 4.5rem;
+    box-sizing: border-box;
+    display: flex;
+}

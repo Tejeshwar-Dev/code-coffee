@@ -1,0 +1,60 @@
+
+.hero-container {
+  width: 100vw;
+  height: 70vh;
+  position: relative;
+}
+
+/* .swiper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+} */
+
+.main-container {
+  position: relative;
+  z-index: 2;
+}
+
+.main-container .main-title,
+.main-container .main-sub-title {
+  color: #fff;
+  margin: 0;
+}
+
+.main-container .main-title {
+  font-size: 36px;
+}
+
+.main-container .main-sub-title {
+  font-size: 24px;
+}
+
+.main-container .main-button {
+  border: none;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #000;
+  font-size: 12px;
+  padding: 12px 18px;
+}
+
+.hero-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(.6);
+}
+
+.home-products {
+  padding: 2.25rem 2rem;
+}
+
+.home-products .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}

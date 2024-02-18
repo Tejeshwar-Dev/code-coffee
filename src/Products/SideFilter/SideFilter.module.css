@@ -1,0 +1,13 @@
+.side-filter-container {
+    border: 1px solid #000;
+    border-radius: .5rem;
+    height: 100%;
+    width: 17.5rem;
+    min-width: 17.5rem;
+}
+
+.filter-section .title {
+    font-size: .875rem;
+    font-weight: 600;
+    margin: .5rem 0;
+}
