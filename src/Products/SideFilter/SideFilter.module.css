@@ -1,13 +1,46 @@
 .side-filter-container {
-    border: 1px solid #000;
-    border-radius: .5rem;
-    height: 100%;
+    border: 1px solid #D9D9D9;
+    border-radius: 0.625rem;
+    height: min-content;
     width: 17.5rem;
     min-width: 17.5rem;
+    padding: 1rem .75rem;
+    box-sizing: border-box;
+}
+
+.side-filter-container header h5{
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+
+.filter-section {
+    margin: 0;
+    margin-bottom: .625rem;
+    border-bottom: 1px solid #DCDCDC;
 }
 
 .filter-section .title {
     font-size: .875rem;
-    font-weight: 600;
-    margin: .5rem 0;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: .25rem;
+}
+
+.filter-section .form-group ,
+.filter-section .checkbox-section {
+    margin-bottom: .625rem;
+}
+
+.filter-section .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: .25rem;
+}
+
+.filter-section .checkbox-group label{
+    font-size: .75rem;
+    font-weight: 400;
+    margin-left: .375rem;
 }

@@ -12,8 +12,8 @@ function ProductCard({productImg, price, title, region, cardStyle}) {
                 <p className={styledClasses["card-price"]}>${price}</p>
             </div>
             <div className={styledClasses["card-body"]}>
-                <h3>{title}</h3>
-                <p>Region: {region}</p>
+                <h3 className={styledClasses["card-title"]}>{title}</h3>
+                <p className={styledClasses["card-subtitle"]}>{region}</p>
             </div>
         </div>
     )
