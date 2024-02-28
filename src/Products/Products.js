@@ -1,8 +1,9 @@
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import ProductList from "./ProductList/ProductList";
 import SideFilter from "./SideFilter/SideFilter";
 import styledClass from "./Products.module.css";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { GET } from "../apiRequests";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 export const ProductListContext = createContext({
     products: [],
@@ -12,12 +13,14 @@ export const ProductListContext = createContext({
 
 const Products = () => {
     const productList = useRef([]);
-    const  [products, setProductsList] = useState([]);
+    const [products, setProductsList] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const updateProductList = (result) => {
         setProductsList(result);
         productList.current = result;
     }
+    
     const responseErrorHandler = (err) => console.log('error', err);
 
     const getAllProductsItems = useCallback(() => {
@@ -28,10 +31,21 @@ const Products = () => {
         getAllProductsItems();
     }, [getAllProductsItems]);
 
+    const showProductInfo = (product) => {
+        setSelectedProduct(product)
+    }
+
+    const closeModal = (evt) => {
+        evt.stopPropagation();
+        evt.preventDefault();
+        setSelectedProduct(null);
+    }
+
     const productContext = {
         products: products,
         setProductsList: setProductsList,
-        filterList: productList.current
+        filterList: productList.current,
+        showProductInfo
     };
     
     return (
@@ -40,6 +54,7 @@ const Products = () => {
                 <SideFilter />
                 <ProductList />
             </div>
+            {selectedProduct && <ProductDetails productInfo={selectedProduct} onCloseModal={closeModal} />}
         </ProductListContext.Provider>
     )
 }

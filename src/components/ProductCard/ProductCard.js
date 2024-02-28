@@ -1,9 +1,9 @@
 
 import styledClasses from './ProductCard.module.css';
 
-function ProductCard({productImg, price, title, region, cardStyle}) {
+function ProductCard({productImg, price, title, region, cardStyle, onClick}) {
     return (
-        <div className={styledClasses["card-container"]} style={cardStyle}>
+        <div className={styledClasses["card-container"]} style={cardStyle} onClick={onClick}>
             <div className={styledClasses["card-header"]}>
                 <img src={productImg} alt="prodduct_img"/>
             </div>

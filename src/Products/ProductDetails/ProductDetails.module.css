@@ -1,0 +1,48 @@
+.modal-container {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.5);
+    z-index: 99;
+    cursor: pointer;
+}
+
+.modal-main {
+    height: 100%;
+    width: 60%;
+    background-color: #fff;
+    right: 0;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+    padding: 3rem 2.5rem;
+    box-sizing: border-box;
+    cursor: auto;
+}
+
+.modal-main main {
+    overflow: hidden;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    /* margin: 0; */
+}
+
+.modal-main .product-image {
+    width: 100%;
+    height: 360px;
+    object-fit: contain;
+    transform: scale(1.5);
+}
+
+.product-info h4 {
+    margin: 0;
+    margin-bottom: .625rem;
+}
+
+.product-info p {
+    margin: 0;
+}
