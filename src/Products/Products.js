@@ -4,10 +4,10 @@ import SideFilter from "./SideFilter/SideFilter";
 import styledClass from "./Products.module.css";
 import { GET } from "../apiRequests";
 import ProductDetails from "./ProductDetails/ProductDetails";
-import { productContext } from "../store/productContext";
+import { ProductContext } from "../store/ProductContext";
 
 const Products = () => {
-    const { updateProductList, selectItemView, showProductInfo } = useContext(productContext)
+    const { updateProductList, selectItemView, showProductInfo } = useContext(ProductContext)
     const responseErrorHandler = (err) => console.log('error', err);
 
     const getAllProductsItems = useCallback(() => {

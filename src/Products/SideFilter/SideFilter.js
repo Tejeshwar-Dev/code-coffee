@@ -1,15 +1,7 @@
 import { useContext, useState } from 'react';
 import styledClass from './SideFilter.module.css';
-import { productContext } from '../../store/productContext';
-
-export function CustomCheckbox({name, value, id, ...props}) {
-    return (
-        <div className={styledClass['checkbox-group']}>
-            <input type='checkbox' name={name} id={id} value={value} {...props}/>
-            <label htmlFor={id}>{value}</label>
-        </div>
-    );
-}
+import { ProductContext } from '../../store/ProductContext';
+import CheckBox from '../../components/Checkbox/Checkbox';
 
 const regionsList = ['Central America', 'Africa', 'South America', 'Asia Pacifica', 'Middle East'];
 const grindOptions = ["Whole Bean", "Cafetiere", "Filter", "Espresso", "French press", "Pour Over"]
@@ -20,7 +12,7 @@ const SideFilter = () => {
     const [selectedRegions, setSelectedRegions] = useState([]);
     const [selectedGrind, setSelectedGrind] = useState([]);
     const [rostLevel, setRoastLevel] = useState(3);
-    const { updateProductList, filterList } = useContext(productContext);
+    const { updateProductList, filterList } = useContext(ProductContext);
     // const filteredList = useRef([]);
 
     function updatePriceRange(event, rangeType) {
@@ -113,7 +105,7 @@ const SideFilter = () => {
                 <div className={styledClass['checkbox-section']}>
                     {regionsList.map(region => {
                         const id = region.split(' ').join('_').toLowerCase();
-                        return <CustomCheckbox key={id} id={id} name={'region'} value={region} checked={selectedRegions.includes(region)} onChange={() => updateCheckboxState(region, selectedRegions, setSelectedRegions)}/>;
+                        return <CheckBox key={id} id={id} name={'region'} value={region} checked={selectedRegions.includes(region)} onChange={() => updateCheckboxState(region, selectedRegions, setSelectedRegions)}/>;
                     })}
                 </div>
             </section>
@@ -124,7 +116,7 @@ const SideFilter = () => {
                 <div className={styledClass['checkbox-section']}>
                     {grindOptions.map(grindOption => {
                         const id = grindOption.split(' ').join('_').toLowerCase();
-                        return <CustomCheckbox key={id} id={id} name={'grind-option'} value={grindOption} checked={selectedGrind.includes(grindOption)} onChange={() => updateCheckboxState(grindOption, selectedGrind, setSelectedGrind)}/>;
+                        return <CheckBox key={id} id={id} name={'grind-option'} value={grindOption} checked={selectedGrind.includes(grindOption)} onChange={() => updateCheckboxState(grindOption, selectedGrind, setSelectedGrind)}/>;
                     })}
                 </div>
             </section>

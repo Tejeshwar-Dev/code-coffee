@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useRef } from "react";
 
-export const productContext = createContext({
+export const ProductContext = createContext({
     items: [],
     selectItemView: null,
     filterList: [],
@@ -63,9 +63,9 @@ const ProductProvider = ({children}) => {
         showProductInfo
     }
 
-    return <productContext.Provider value={productCtx}>
+    return <ProductContext.Provider value={productCtx}>
         {children}
-    </productContext.Provider>
+    </ProductContext.Provider>
 }
 
 export default ProductProvider;

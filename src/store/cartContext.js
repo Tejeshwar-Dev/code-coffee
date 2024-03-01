@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const cartContext = createContext({
+export const CartContext = createContext({
     cartList: [],
     wishList: []
 });
@@ -11,9 +11,9 @@ const cartCtxValues = {
 }
 
 const CartProvider = ({children}) => {
-    return <cartContext.Provider value={cartCtxValues}>
+    return <CartContext.Provider value={cartCtxValues}>
         {children}
-    </cartContext.Provider>
+    </CartContext.Provider>
 }
 
 export default CartProvider;

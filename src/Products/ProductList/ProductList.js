@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 import styledClass from './ProductList.module.css';
-import { productContext } from "../../store/productContext";
+import { ProductContext } from "../../store/ProductContext";
 
 const ProductList = () => {
-    const { items:products, showProductInfo} = useContext(productContext);
+    const { items:products, showProductInfo} = useContext(ProductContext);
 
     return (
         <div className={styledClass["products-list"]}>

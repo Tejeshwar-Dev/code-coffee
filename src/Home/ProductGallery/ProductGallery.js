@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../Products/ProductCard/ProductCard";
 
 export default function ProductGallery({products}) {
     return (

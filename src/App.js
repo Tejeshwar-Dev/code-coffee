@@ -3,8 +3,8 @@ import './App.css';
 import Home from './Home/Home';
 import Products from './Products/Products';
 import RouterRoot from './RouterRoot';
-import CartProvider from './store/cartContext';
-import ProductProvider from './store/productContext';
+import CartProvider from './store/CartContext';
+import ProductProvider from './store/ProductContext';
 
 const routes = createBrowserRouter ([
   { 
