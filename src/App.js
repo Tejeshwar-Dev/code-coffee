@@ -3,6 +3,8 @@ import './App.css';
 import Home from './Home/Home';
 import Products from './Products/Products';
 import RouterRoot from './RouterRoot';
+import CartProvider from './store/cartContext';
+import ProductProvider from './store/productContext';
 
 const routes = createBrowserRouter ([
   { 
@@ -17,10 +19,13 @@ const routes = createBrowserRouter ([
 
 function App() {
   return (
-    <div className='app-main'>
-      {/* <Products /> */}
-      <RouterProvider router={routes} />
-    </div>
+    <CartProvider>
+      <ProductProvider>
+        <div className='app-main'>
+          <RouterProvider router={routes} />
+        </div>
+      </ProductProvider>
+    </CartProvider>
   );
 }
 

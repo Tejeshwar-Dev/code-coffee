@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import styledClass from './SideFilter.module.css';
-import { ProductListContext } from '../Products';
+import { productContext } from '../../store/productContext';
 
 export function CustomCheckbox({name, value, id, ...props}) {
     return (
@@ -20,9 +20,8 @@ const SideFilter = () => {
     const [selectedRegions, setSelectedRegions] = useState([]);
     const [selectedGrind, setSelectedGrind] = useState([]);
     const [rostLevel, setRoastLevel] = useState(3);
-    const { setProductsList, filterList } = useContext(ProductListContext);
+    const { updateProductList, filterList } = useContext(productContext);
     // const filteredList = useRef([]);
-
 
     function updatePriceRange(event, rangeType) {
         let newValue = event.target.value;
@@ -92,7 +91,7 @@ const SideFilter = () => {
             }
         });
 
-        setProductsList(productLists);
+        updateProductList(productLists);
     }
     
     return (

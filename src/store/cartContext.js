@@ -10,10 +10,10 @@ const cartCtxValues = {
     wishList: []
 }
 
-const cartProvider = ({children}) => {
+const CartProvider = ({children}) => {
     return <cartContext.Provider value={cartCtxValues}>
         {children}
     </cartContext.Provider>
 }
 
-export default cartProvider;
+export default CartProvider;

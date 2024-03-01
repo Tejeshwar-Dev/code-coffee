@@ -1,26 +1,13 @@
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import ProductList from "./ProductList/ProductList";
 import SideFilter from "./SideFilter/SideFilter";
 import styledClass from "./Products.module.css";
 import { GET } from "../apiRequests";
 import ProductDetails from "./ProductDetails/ProductDetails";
-
-export const ProductListContext = createContext({
-    products: [],
-    setProductsList: () => {},
-    filterList: []
-});
+import { productContext } from "../store/productContext";
 
 const Products = () => {
-    const productList = useRef([]);
-    const [products, setProductsList] = useState([]);
-    const [selectedProduct, setSelectedProduct] = useState(null);
-
-    const updateProductList = (result) => {
-        setProductsList(result);
-        productList.current = result;
-    }
-    
+    const { updateProductList, selectItemView, showProductInfo } = useContext(productContext)
     const responseErrorHandler = (err) => console.log('error', err);
 
     const getAllProductsItems = useCallback(() => {
@@ -31,31 +18,20 @@ const Products = () => {
         getAllProductsItems();
     }, [getAllProductsItems]);
 
-    const showProductInfo = (product) => {
-        setSelectedProduct(product)
-    }
-
     const closeModal = (evt) => {
         evt.stopPropagation();
         evt.preventDefault();
-        setSelectedProduct(null);
+        showProductInfo(null);
     }
-
-    const productContext = {
-        products: products,
-        setProductsList: setProductsList,
-        filterList: productList.current,
-        showProductInfo
-    };
     
     return (
-        <ProductListContext.Provider value={productContext}>
+        <>
             <div className={styledClass["products-container"]}>
                 <SideFilter />
                 <ProductList />
             </div>
-            {selectedProduct && <ProductDetails productInfo={selectedProduct} onCloseModal={closeModal} />}
-        </ProductListContext.Provider>
+            {selectItemView && <ProductDetails productInfo={selectItemView} onCloseModal={closeModal}/>}
+        </>
     )
 }
 
