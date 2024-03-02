@@ -1,17 +1,94 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext({
-    cartList: [],
-    wishList: []
+    cartItems: {},
+    updateCartItems: () => {}
 });
 
-const cartCtxValues = {
+const initialCartState = {
     cartList: [],
     wishList: []
 }
 
+const cartReducerFn = (state, action) => {
+    if(action.type ===  'ADD_TO_CART'){
+        const cartItems = [...state.cartList];
+        const prroductDetails = action.product;
+        
+        const itemIndex = cartItems.findIndex(item => item.id === prroductDetails._id);
+        const existingItem = cartItems[itemIndex];
+
+        if(existingItem){
+            const item = {
+                ...existingItem,
+                quantity: existingItem.quantity + 1
+            }
+
+            cartItems[itemIndex] = item;
+        } else {
+            cartItems.push({
+                quantity: 1,
+                name: prroductDetails.name,
+                id: prroductDetails._id,
+                price: prroductDetails.price,
+                productImg: prroductDetails.image_url
+            });
+        }
+        
+        
+        return {
+            ...state,
+            cartList: cartItems
+        }
+    }
+
+    if(action.type === 'REMOVE_FROM_CART') {
+        const cartItems = [...state.cartList];
+        const productDetails = action.product;
+
+        const itemIndex = cartItems.findIndex(item => item.id === productDetails._id);
+        const existingItem = cartItems[itemIndex];
+
+        if(existingItem.quantity > 1) {
+            const item = {
+                ...existingItem,
+                quantity: existingItem.quantity - 1
+            }
+            cartItems[itemIndex] = item;
+        } else {
+            cartItems.splice(itemIndex, 1);
+        }
+
+        return {
+            ...state,
+            cartList: cartItems
+        }
+    }
+    
+    return state;
+}
+
+
 const CartProvider = ({children}) => {
-    return <CartContext.Provider value={cartCtxValues}>
+    const [cartState, dispatchCartActionFn] = useReducer(cartReducerFn, initialCartState);
+
+    const updateCartItems = (updateType) => {
+        const {currProduct, type} = updateType;
+        
+        dispatchCartActionFn({
+            type: type,
+            product: currProduct
+        });
+    }
+
+    console.log("🚀 cartProvider", cartState)
+
+    const cartCtx = {
+        cartItems: cartState.cartList,
+        updateCartItems: updateCartItems
+    }
+
+    return <CartContext.Provider value={cartCtx}>
         {children}
     </CartContext.Provider>
 }

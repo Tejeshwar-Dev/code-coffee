@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import styledClass from './SideFilter.module.css';
-import { ProductContext } from '../../store/ProductContext';
+import { ProductContext } from './../../store/ProductContext'
 import CheckBox from '../../components/Checkbox/Checkbox';
 
 const regionsList = ['Central America', 'Africa', 'South America', 'Asia Pacifica', 'Middle East'];
@@ -78,9 +78,13 @@ const SideFilter = () => {
 
     function applyFilter() {
         let productLists = filterList.filter(product => {
+            let productItem;
+
             if((priceRange.min <= product.price) && (priceRange.max >= product.price)) {
-                return (selectedRegions.length > 0) ? selectedRegions.includes(product.region) : product
+                productItem = (selectedRegions.length > 0) ? selectedRegions.includes(product.region) : product
             }
+
+            return productItem;
         });
 
         updateProductList(productLists);
