@@ -4,6 +4,7 @@
     overflow: hidden auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-rows: max-content;
     gap: 1.25rem;
     margin-left: 1.5rem;
     padding: 0 .25rem 0 .5rem;

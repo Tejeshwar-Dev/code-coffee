@@ -65,6 +65,20 @@ const cartReducerFn = (state, action) => {
         }
     }
     
+    if(action.type === 'UPDATE_WISHLIST') {
+        let wishListItems = [...state.wishList];
+
+        wishListItems.includes(action.payload) ? 
+            wishListItems = wishListItems.filter(itemId => itemId !== action.payload)
+        :
+            wishListItems.push(action.payload);
+
+        return {
+            ...state,
+            wishList: wishListItems
+        }
+    }
+    
     return state;
 }
 
@@ -81,11 +95,18 @@ const CartProvider = ({children}) => {
         });
     }
 
-    console.log("🚀 cartProvider", cartState)
+    const updateWishlist = (productID) => {
+        dispatchCartActionFn({
+            type: 'UPDATE_WISHLIST',
+            payload: productID
+        })
+    }
 
     const cartCtx = {
         cartItems: cartState.cartList,
-        updateCartItems: updateCartItems
+        wishedItems: cartState.wishList,
+        updateCartItems: updateCartItems,
+        updateWishlist: updateWishlist
     }
 
     return <CartContext.Provider value={cartCtx}>

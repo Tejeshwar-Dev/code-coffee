@@ -10,8 +10,19 @@ const ProductList = () => {
         <div className={styledClass["products-list"]}>
             {
                 products?.map(product => {
-                    const {_id, image_url, price, name, region} = product;
-                    return <ProductCard id={_id} key={_id} productImg={image_url} price={price} title={name} region={region} cardStyle={{width: '100%'}} />
+                    const {_id, image_url, price, name, region, grind_option, flavor_profile, roast_level} = product;
+                    return <ProductCard 
+                        id={_id} 
+                        key={_id} 
+                        productImg={image_url} 
+                        price={price} 
+                        title={name} 
+                        region={region} 
+                        grindOption={grind_option} 
+                        flavors={flavor_profile} 
+                        roastLevel={roast_level} 
+                        cardStyle={{width: '100%'}} 
+                    />
                 })
             }
         </div>
