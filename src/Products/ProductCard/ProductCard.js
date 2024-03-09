@@ -8,7 +8,7 @@ import { ProductContext } from '../../store/ProductContext';
 import HEART_IMG from './../../assets/img/heart.svg';
 import HEART_FILLED_IMG from './../../assets/img/heart-filled.svg';
 
-function ProductCard({id, productImg, price, title, region, cardStyle, grindOption, flavors, roastLevel}) {
+function ProductCard({id, productImg, price, title, description, region, cardStyle, grindOption, flavors, roastLevel}) {
     const {items: productItems, showProductInfo} = useContext(ProductContext);
     const {cartItems, wishedItems, updateCartItems, updateWishlist} = useContext(CartContext);
 
@@ -48,9 +48,9 @@ function ProductCard({id, productImg, price, title, region, cardStyle, grindOpti
         
         if(cartItem && cartItem.quantity > 0) {
             productCardCartBtn = (
-                <div className={styledClasses['product-cart-btn']}>
+                <div className={styledClasses['product-cart-quantity-btn']}>
                     <button className={styledClasses['remove-item']} onClick={(event) => updateToCart(event, {type: 'REMOVE_FROM_CART', id: id})}>-</button>
-                        <label>{cartItem.quantity}</label>
+                        <label className={styledClasses['product-quantity']}>{cartItem.quantity}</label>
                     <button className={styledClasses['add-item']} onClick={(event) => updateToCart(event, {type: 'ADD_TO_CART', id: id})}>+</button>
                 </div>
             )
@@ -61,28 +61,56 @@ function ProductCard({id, productImg, price, title, region, cardStyle, grindOpti
     // };
     
     return (
-        <div id={id} className={styledClasses["card-container"]} style={cardStyle} onClick={() => showProductInfoFn(id)}>
-            <section className={styledClasses["card-header"]}>
-                <img className={styledClasses['product-image']} src={productImg} alt="prodduct_img"/>
-                {/* <button  className={styledClasses['product-wishlist-btn']} onClick={(event) => updateItemToWishlist(event, id)}>
+        // <div id={id} className={styledClasses["card-container"]} style={cardStyle} onClick={() => showProductInfoFn(id)}>
+        //     <section className={styledClasses["card-header"]}>
+        //         <img className={styledClasses['product-image']} src={productImg} alt="prodduct_img"/>
+        //         {/* <button  className={styledClasses['product-wishlist-btn']} onClick={(event) => updateItemToWishlist(event, id)}>
+        //             <img src={wishedItems.includes(id) ? HEART_FILLED_IMG : HEART_IMG} alt="favourite" />
+        //             Wishlist
+        //         </button> */}
+        //     </section>
+        //     <div className={styledClasses["card-header-divider"]}>
+        //         <div className={styledClasses["card-divider-blank"]}></div>
+        //         <p className={styledClasses["card-price"]}>${price}</p>
+        //     </div>
+        //     <div className={styledClasses["card-body"]}>
+        //         <h3 className={styledClasses["card-title"]}>{title}</h3>
+        //         <p className={styledClasses["card-subtitle"]}>{region}</p>
+        //     </div>
+        //     <footer className={styledClasses['product-card-footer']}>
+        //         {productCardCartBtn}
+        //         {/* <button className={styledClasses['remove-item']} onClick={(event) => updateToCart(event, {type: 'REMOVE_FROM_CART', id: id})}>-</button>
+        //         <label>0</label>
+        //         <button className={styledClasses['add-item']} onClick={(event) => updateToCart(event, {type: 'ADD_TO_CART', id: id})}>+</button> */}
+        //     </footer>
+        // </div>
+
+        <div className={styledClasses['product-card']} onClick={() => showProductInfoFn(id)}>
+            <div className={styledClasses['product-card-header']}>
+                <div className={styledClasses['product-img-wrapper']}>
+                    <img src={productImg} alt={title}/>
+                    <p className={styledClasses['product-price']}>{price}</p>
+                </div>
+                <div className={styledClasses['product-wishlist']}>
                     <img src={wishedItems.includes(id) ? HEART_FILLED_IMG : HEART_IMG} alt="favourite" />
-                    Wishlist
-                </button> */}
-            </section>
-            <div className={styledClasses["card-header-divider"]}>
-                <div className={styledClasses["card-divider-blank"]}></div>
-                <p className={styledClasses["card-price"]}>${price}</p>
+                </div>
             </div>
-            <div className={styledClasses["card-body"]}>
-                <h3 className={styledClasses["card-title"]}>{title}</h3>
-                <p className={styledClasses["card-subtitle"]}>{region}</p>
+            <div className={styledClasses['product-card-body']}>
+                <div className={styledClasses['product-details-header']}>
+                    <h3>{title}</h3>
+                    <p>{region}</p>
+                </div>
+                <div className={styledClasses['product-details']}>
+                    <p className={styledClasses['product-info']}>{description}</p>
+                    <div className={styledClasses['product-flavors']}>
+                        {flavors.map(flavor => <span key={`${flavor}-flavor`} className={styledClasses['product-flavor']}>{flavor}</span>)}
+                    </div>
+                </div>
+                <span className={styledClasses['product-divider']}></span>
+                <div className={styledClasses['product-card-footer']}>
+                    {productCardCartBtn}
+                </div>
             </div>
-            <footer className={styledClasses['product-card-footer']}>
-                {productCardCartBtn}
-                {/* <button className={styledClasses['remove-item']} onClick={(event) => updateToCart(event, {type: 'REMOVE_FROM_CART', id: id})}>-</button>
-                <label>0</label>
-                <button className={styledClasses['add-item']} onClick={(event) => updateToCart(event, {type: 'ADD_TO_CART', id: id})}>+</button> */}
-            </footer>
         </div>
     )
 }
