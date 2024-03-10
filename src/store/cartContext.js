@@ -30,6 +30,7 @@ const cartReducerFn = (state, action) => {
                 quantity: 1,
                 name: prroductDetails.name,
                 id: prroductDetails._id,
+                _id: prroductDetails._id,
                 price: prroductDetails.price,
                 productImg: prroductDetails.image_url
             });
@@ -59,6 +60,18 @@ const cartReducerFn = (state, action) => {
             cartItems.splice(itemIndex, 1);
         }
 
+        return {
+            ...state,
+            cartList: cartItems
+        }
+    }
+
+    if(action.type === 'DELETE_FROM_CART') {
+        let cartItems = [...state.cartList];
+        const productDetails = action.product;
+
+        cartItems = cartItems.filter(item => item.id !== productDetails.id);
+        
         return {
             ...state,
             cartList: cartItems
