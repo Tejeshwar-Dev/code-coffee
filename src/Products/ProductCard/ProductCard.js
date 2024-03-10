@@ -34,6 +34,7 @@ function ProductCard({id, productImg, price, title, description, region, cardSty
     }
 
     const cartItem = cartItems.find(item => item.id === id);
+    console.log("🚀 cartItems", cartItems)
     let productCardCartBtn = (
         <button className={styledClasses['product-cart-btn']} onClick={(event) => updateToCart(event, {type: 'ADD_TO_CART', id: id})}>Add to cart</button>
     );

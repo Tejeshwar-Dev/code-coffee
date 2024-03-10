@@ -8,9 +8,9 @@
 } */
 
 .products-container {
-    height: 100%;
+    height: calc(100% - 4rem);
     width: 100%;
-    padding: 2.25rem 4.5rem;
+    padding: 1.5rem 4.5rem;
     box-sizing: border-box;
     display: flex;
 }

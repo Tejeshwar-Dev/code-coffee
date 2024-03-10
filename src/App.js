@@ -5,6 +5,7 @@ import Products from './Products/Products';
 import RouterRoot from './RouterRoot';
 import CartProvider from './store/CartContext';
 import ProductProvider from './store/ProductContext';
+import CartItems from './CartItems/CartItems';
 
 const routes = createBrowserRouter ([
   { 
@@ -12,9 +13,11 @@ const routes = createBrowserRouter ([
     element: <RouterRoot /> ,
     children: [
       { index: true, element: <Home /> },
-      { path: 'products', element: <Products />}
+      { path: 'products', element: <Products />},
+      { path: 'cart', element: <CartItems /> }
     ]
-  }
+  }, 
+  // { path: '/products', element: <Products /> }
 ]);
 
 function App() {
